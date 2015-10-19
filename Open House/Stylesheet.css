@@ -4,11 +4,23 @@ h1 {
 }
 
 #header {
-    background-color: black;
+    background-color: #333;
     width: 1000px;
     height: 100px;
 }
 
-#navigation {
+nav {
+    text-align: center;
+}
 
+nav > ul > li {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    padding: 15px;
+}
+body {
+    padding: 0;
+    margin: 0;
 }
