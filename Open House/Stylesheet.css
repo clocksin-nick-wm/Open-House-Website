@@ -5,25 +5,48 @@ h1 {
 
 #header {
     background-color: #333;
-    width: 1000px;
+    width: 1900px;
     height: 80px;
+    margin: 0;
+    padding: 0;
 }
 
 nav {
     text-align: center;
     background-color: black;
-    width: 1000px;
+    width: 1900px;
     height: 20px;
 }
 
 nav > ul > li {
     display: inline-block;
     text-align: center;
-    text-decoration: none;
-    color: white;
     width: 10%;
 }
-body {
+
+body{
     padding: 0;
     margin: 0;
+}
+
+nav > ul > li > a {
+    text-decoration: none;
+    color: white;
+}
+
+#main{
+height: 500px;
+width: 1900px;
+background-color: orange;
+}
+
+#slider {
+    width: 800px;
+    height: 500px;
+    align-content: center;
+    }
+#slider > img {
+    width: 800px;
+    height: 500px;
+    align-content: center;
 }
