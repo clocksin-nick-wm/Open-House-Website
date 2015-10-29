@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html>
+<!--Created by Corbin Cunningham-->
+<head>
+    <style>
+        table, td, th {
+            border: 2px solid #1e2ede;
+        }
+        p, td, th {
+            color: #1e2ede;
+        }
+        #heading {
+            width: 30%;
+            margin-left: 35%;
+            height: 30px;
+            background-color: #1effbc;
+            position: relative;
+            animation: titleAnimation 5s infinite;
+        }
+        #main{
+            width: 100%;
+            height: 100%;
+            background-color: #79FF5B;
+            float: left;
+        }
+        @keyframes titleAnimation {
+            0% {left: 0; background-color: #1effbc;}
+            25% {left: 50px; background-color: #79ff5b;}
+            50% {left: 0; background-color: #1effbc;}
+            75% {left: -50px; background-color: #79ff5b;}
+            100% {left: 0; background-color: #1effbc;}
+        }
+        #deathPanel {
+            height: 800px;
+            width: 550px;
+            background-color: #1effbc;
+            float:left;
+            animation: deathPanelAnimation 1s infinite;
+        }
+        @keyframes deathPanelAnimation {
+            0% {opacity: 1.0;}
+            25% {opacity: 1.0;}
+            50% {opacity: 1.0;}
+            75% {opacity: 1.0;}
+            100% {opacity: 1.0;}
+        }
+        #craftingPanel {
+            height: 800px;
+            width: 600px;
+            float: left;
+            margin-left: 10px;
+            background-color: #1effbc;
+        }
+        #infoPanel {
+            height: 100px;
+            width: 550px;
+            margin-top: 5px;
+            background-color: #1effbc;
+            float: left;
+        }
+        #adventurePanel {
+            height: 200px;
+            width: 550px;
+            background-color: #1effbc;
+            float: left;
+            margin-top: 10px;
+        }
+    </style>
+    <title>Wizard and Guardian</title>
+</head>
+<body><div id="main">
+<div id="heading"><h2 style="text-align: center; color: #1e2ede">The Wizard and The Guardian</h2></div>
+<div id="deathPanel">
+    <table style="float: left;">
+        <tr>
+            <td>Choose Attack</td>
+            <td>Hit Chance</td>
+            <td>Damage</td>
+        </tr>
+        <tr>
+            <td><button type="button" style="color: #89023e; background-color: aqua" onclick="funDarkFire()" onmouseover="funButtonOver(this)" onmouseout="funButtonOut(this)">Dark-Fire</button></td>
+            <td>100%</td>
+            <td>Level + 1-5</td>
+        </tr>
+        <tr>
+            <td><button type="button" style="color: #89023e; background-color: aqua" onclick="funShadowBolt()" onmouseover="funButtonOver(this)" onmouseout="funButtonOut(this)">Shadow-Bolt</button></td>
+            <td>75%</td>
+            <td>Level + 3-15</td>
+        </tr>
+        <tr>
+            <td><button type="button" style="color: #89023E; background-color: aqua" onclick="funAcidJet()" onmouseover="funButtonOver(this)" onmouseout="funButtonOut(this)">Acid Jet</button></td>
+            <td>50%</td>
+            <td>Level*2 + 1-10</td>
+        </tr>
+        <tr>
+            <td><button type="button" style="color: #89023e; background-color: aqua" onclick="funDarkBurn()" onmouseover="funButtonOver(this)" onmouseout="funButtonOut(this)">Dark-Burn</button></td>
+            <td>30%</td>
+            <td>Level*3 + 2-20</td>
+        </tr>
+        <tr>
+            <td><button type="button" style="color: #89023e; background-color: aqua" onclick="funDemonClaw()" onmouseover="funButtonOver(this)" onmouseout="funButtonOut(this)">Magic Sword</button></td>
+            <td>10%</td>
+            <td>Level*10 + 30-50</td>
+        </tr>
+    </table>
+<table style="float: left; margin-left: 5px;">
+        <tr><td>Your HP</td><td id="DisplayHP">LOADING</td></tr>
+        <tr><td>Enemy HP</td><td id="DisplayEnemyHP">LOADING</td></tr>
+        <tr><td>Your Level</td><td id="DisplayLevel">LOADING</td></tr>
+    </table>
+    <button type="button" style="color:crimson; background-color: aqua; margin-top: 5px; margin-left: 25px;" onclick="funConfirmAttack()" onmouseover="funButtonOver(this)" onmouseout="funButtonOut(this)">Confirm attack!</button>
+    <div id="infoPanel">
+        <p style="float:left;">You are a good wizard named</p><p style="float:left; margin-left: 4px" id="DisplayName">Unknown</p>
+        <p style="float:left;"> Your mission, that you wish to achieve, is to kill the guardian protecting the evil tomb!</p>
+    </div>
+    <div id="adventurePanel">
+        <table>
+        <tr>
+            <th>Go on an </th>
+            <th>adventure!</th>
+        </tr>
+        <tr>
+            <td><button type="button" style="color: crimson; background-color: aqua" onclick="adventureForest()" onmouseover="funButtonOver(this)" onmouseout="funButtonOut(this)">Forest</button></td>
+            <td><button type="button" style="color: crimson; background-color: aqua" onclick="adventureDesert()" onmouseover="funButtonOver(this)" onmouseout="funButtonOut(this)">Desert</button></td>
+        </tr>
+        <tr>
+            <td><button type="button" style="color: crimson; background-color: aqua" onclick="adventureMountain()" onmouseover="funButtonOver(this)" onmouseout="funButtonOut(this)">Mountain</button></td>
+            <td><button type="button" style="color: crimson; background-color: aqua" onclick="adventureDungeon()" onmouseover="funButtonOver(this)" onmouseout="funButtonOut(this)">Dungeon</button></td>
+        </tr>
+        <tr>
+            <td><button type="button" style="color: crimson; background-color: aqua" onclick="adventureCave()" onmouseover="funButtonOver(this)" onmouseout="funButtonOut(this)">Cave</button></td>
+            <td><button type="button" style="color: crimson; background-color: aqua" onclick="adventureDragonLair()" onmouseover="funButtonOver(this)" onmouseout="funButtonOut(this)">Dragon Lair</button></td>
+        </tr>
+            <tr>
+                <td><button type="button" style="color: crimson; background-color: aqua" onclick="adventureFinalBoss()" onmouseover="funButtonOver(this)" onmouseout="funButtonOut(this)">FINAL BOSS</button></td>
+            </tr>
+        </table>
+    </div>
+    </div>
+<div id="craftingPanel">
+    <table>
+        <tr><th>Item</th><th>Amount</th><th>Sell</th></tr>
+        <tr><th>Gold</th><th style="text-align: center" id="DisplayGold"></th><th>N/A</th></tr>
+        <tr><td>Potato</td><td style="text-align: center" id="DisplayPotato"></td><td><button type="button" onclick="funSellPotato()">Gold:10</button></td></tr>
+        <tr><td>Vine</td><td style="text-align: center" id="DisplayVine"></td><td><button type="button" onclick="funSellVine()">Gold:4</button></td></tr>
+        <tr><td>Wood</td><td style="text-align: center" id="DisplayWood"></td><td><button type="button" onclick="funSellWood()">Gold:6</button></td></tr>
+        <tr><td>Sand</td><td style="text-align: center" id="DisplaySand"></td><td><button type="button" onclick="funSellSand()">Gold:5</button></td></tr>
+        <tr><td>Cactus</td><td style="text-align: center" id="DisplayCactus"></td><td><button type="button" onclick="funSellCactus()">Gold:7</button></td></tr>
+        <tr><td>Snow</td><td style="text-align: center" id="DisplaySnow"></td><td><button type="button" onclick="funSellSnow()">Gold:10</button></td></tr>
+        <tr><td>Rocks</td><td style="text-align: center" id="DisplayRock"></td><td><button type="button" onclick="funSellRock()">Gold:3</button></td></tr>
+        <tr><td>Bone</td><td style="text-align: center" id="DisplayBone"></td><td><button type="button" onclick="funSellBone()">Gold:12</button></td></tr>
+        <tr><td>Rotten Flesh</td><td style="text-align: center" id="DisplayRottenFlesh"></td><td><button type="button" onclick="funSellRottenFlesh()">Gold:15</button></td></tr>
+        <tr><td>Human Remains</td><td style="text-align: center" id="DisplayHumanRemains"></td><td><button type="button" onclick="funSellHumanRemains()">Gold:20</button></td></tr>
+        <tr><td>Dragon Egg</td><td style="text-align: center" id="DisplayDragonEgg"></td><td><button type="button" onclick="funSellDragonEgg()">Gold:100</button></td></tr>
+    </table>
+</div>
+</div>
+</body>
+<script>
+    function funButtonOver(special) {
+        special.style.backgroundColor = "#DEFFF2";
+    }
+    function funButtonOut(normal) {
+        normal.style.backgroundColor = "aqua";
+    }
+    //HP & Level & Name
+    var name = prompt("What is your name?");
+    document.getElementById("DisplayName").innerHTML = name.valueOf();
+    var level = 1;
+    var experience = 0;
+    var hitPoints = level * 5 + 20;
+    var enemyHitPoints = 0;
+    var demonHitPoints = 0;
+    //attack types variables
+    var darkFireAttack = 0;
+    var shadowBoltAttack = 0;
+    var acidJetAttack = 0;
+    var darkBurnAttack = 0;
+    var demonClawAttack = 0;
+    var attackType = 0;
+    // combat var
+    var combat = false;
+    //declaring dynamic variables
+    document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+    document.getElementById("DisplayEnemyHP").innerHTML = enemyHitPoints.valueOf();
+    document.getElementById("DisplayLevel").innerHTML = level.valueOf();
+    //Key for attacks
+    //darkFire = 1;
+    //shadowBolt = 2;
+    //acidJet = 3;
+    //darkBurn = 4;
+    //demonClaw = 5;
+    //attacking functions
+    function funDarkFire() {
+        if (combat === true) {
+            attackType = 1;
+        }
+        else{
+            confirm("You aren't in combat!");
+        }
+    }
+    function funShadowBolt() {
+        if (combat === true) {
+            attackType = 2;
+        }
+        else{
+            confirm("You aren't in combat!");
+        }
+    }
+    function funAcidJet() {
+        if (combat === true) {
+            attackType = 3;
+        }
+        else{
+            confirm("You aren't in combat!");
+        }
+    }
+    function funDarkBurn() {
+        if (combat === true) {
+            attackType = 4;
+        }
+        else{
+            confirm("You aren't in combat!");
+        }
+    }
+    function funDemonClaw() {
+        if (combat === true) {
+            attackType = 5;
+        }
+        else{
+            confirm("You aren't in combat!");
+        }
+    }
+    //confirm attack button
+    function funConfirmAttack(){
+        if (combat === true) {
+            switch (attackType) {
+                case 1:
+                        funDarkFireConfirm();
+                    break;
+                case 2:
+                        funShadowBoltConfirm();
+                    break;
+                case 3:
+                        funAcidJetConfirm();
+                    break;
+                case 4:
+                        funDarkBurnConfirm();
+                    break;
+                case 5:
+                        funDemonClawConfirm();
+                    break;
+                default:
+                    confirm("Error: please select an option.");
+            }
+        }
+        else{
+            confirm("You aren't in combat!");
+        }
+    }
+    //functions for attack and enemy attacks.
+    function funDarkFireConfirm() {
+        confirm("Your dark fire hit!");
+        enemyHitPoints = enemyHitPoints - (level + 1 + Math.floor(Math.random() * 5));
+        document.getElementById("DisplayEnemyHP").innerHTML = enemyHitPoints.valueOf();
+        if (enemyHitPoints > 0) {
+            funEnemyAttack();
+        }
+        else{
+            funLoot();
+            funExperience();
+            combat = false;
+            adventureType = 0;
+        }
+    }
+    function funShadowBoltConfirm() {
+        if (Math.random() * 100 >= 25) {
+            confirm("Your shadow bolt hit!");
+            enemyHitPoints = enemyHitPoints - (level + 3 + Math.floor(Math.random() * 13));
+            document.getElementById("DisplayEnemyHP").innerHTML = enemyHitPoints.valueOf();
+            if (enemyHitPoints > 0) {
+                funEnemyAttack();
+            }
+        else{
+                funLoot();
+                funExperience();
+                combat = false;
+                adventureType = 0;
+            }
+        }
+        else{
+            confirm("Your shadow bolt missed!");
+        }
+        if (enemyHitPoints > 0) {
+            funEnemyAttack();
+        }
+        else{
+            funLoot();
+            funExperience();
+            combat = false;
+            adventureType = 0;
+        }
+    }
+    function funAcidJetConfirm() {
+        if (Math.random() * 100 >= 50) {
+            confirm("Your acid jet hit!");
+            enemyHitPoints = enemyHitPoints - ((level * 2) + 1 + Math.floor(Math.random() * 10));
+            document.getElementById("DisplayEnemyHP").innerHTML = enemyHitPoints.valueOf();
+        }
+        else{
+            confirm("Your acid jet missed!");
+        }
+        if (enemyHitPoints > 0) {
+            funEnemyAttack();
+        }
+        else{
+            funLoot();
+            funExperience();
+            combat = false;
+            adventureType = 0;
+        }
+    }
+    function funDarkBurnConfirm() {
+        if (Math.random() * 100 >= 70) {
+            confirm("Your dark burn hit!");
+            enemyHitPoints = enemyHitPoints - ((level * 3) + 2 + Math.floor(Math.random() * 19));
+            document.getElementById("DisplayEnemyHP").innerHTML = enemyHitPoints.valueOf();
+        }
+        else{
+            confirm("Your dark burn missed!");
+        }
+        if (enemyHitPoints > 0) {
+            funEnemyAttack();
+        }
+        else{
+
+            funLoot();
+            funExperience();
+            combat = false;
+            adventureType = 0;
+        }
+    }
+    function funDemonClawConfirm() {
+        if (Math.random() * 100 >= 90) {
+            confirm("Your magic sword hit!");
+            enemyHitPoints = enemyHitPoints - ((level * 10) + 31 + Math.floor(Math.random() * 20));
+            document.getElementById("DisplayEnemyHP").innerHTML = enemyHitPoints.valueOf();
+        }
+        else{
+            confirm("Your magic sword missed!");
+        }
+        if (enemyHitPoints > 0) {
+            funEnemyAttack();
+        }
+        else{
+            funLoot();
+            funExperience();
+            combat = false;
+            adventureType = 0;
+        }
+    }
+    //adventure type functions
+    var adventureType = 0;
+    function adventureForest() {
+        if(combat === false) {
+            hitPoints = level * 5 + 20;
+            adventureType = 1;
+            enemyHitPoints = Math.floor((level * 0.5) + (Math.random() * 12) + 1);
+            document.getElementById("DisplayEnemyHP").innerHTML = enemyHitPoints.valueOf();
+            combat = true;
+        }
+        else{
+            confirm("You are already on an adventure!");
+        }
+    }
+    function adventureDesert() {
+        if(combat === false) {
+            hitPoints = level * 5 + 20;
+            adventureType = 2;
+            enemyHitPoints = Math.floor((level * 0.5) + (Math.random() * 24) + 6);
+            document.getElementById("DisplayEnemyHP").innerHTML = enemyHitPoints.valueOf();
+            combat = true;
+        }
+        else{
+            confirm("You are already on an adventure!");
+        }
+    }
+    function adventureMountain() {
+        if(combat === false) {
+            hitPoints = level * 5 + 20;
+            enemyHitPoints = Math.floor((level * 0.5) + (Math.random() * 44) + 16);
+            document.getElementById("DisplayEnemyHP").innerHTML = enemyHitPoints.valueOf();
+            combat = true;
+            adventureType = 3;
+        }
+        else{
+            confirm("You are already on an adventure!");
+        }
+    }
+    function adventureDungeon() {
+        if(combat === false) {
+            hitPoints = level * 5 + 20;
+            enemyHitPoints = Math.floor((level) + (Math.random() * 49) + 26);
+            document.getElementById("DisplayEnemyHP").innerHTML = enemyHitPoints.valueOf();
+            combat = true;
+            adventureType = 4;
+        }
+        else{
+            confirm("You are already on an adventure!");
+        }
+    }
+    function adventureCave() {
+        if(combat === false) {
+            hitPoints = level * 5 + 20;
+            adventureType = 5;
+            enemyHitPoints = Math.floor((level * 1.5) + (Math.random() * 59) + 31);
+            document.getElementById("DisplayEnemyHP").innerHTML = enemyHitPoints.valueOf();
+            combat = true;
+        }
+        else{
+            confirm("You are already on an adventure!");
+        }
+    }
+    function adventureDragonLair() {
+        if(combat === false) {
+            hitPoints = level * 5 + 20;
+            adventureType = 6;
+            enemyHitPoints = Math.floor((level * 5) + (Math.random() * 29) + 41);
+            document.getElementById("DisplayEnemyHP").innerHTML = enemyHitPoints.valueOf();
+            combat = true;
+        }
+        else{
+            confirm("You are already on an adventure!");
+        }
+    }
+    var finalBoss = false;
+    function adventureFinalBoss() {
+        if(combat === false) {
+            if (finalBoss === false){
+                hitPoints = level * 5 + 20;
+                adventureType = 7;
+                enemyHitPoints = 400;
+                document.getElementById("DisplayEnemyHP").innerHTML = enemyHitPoints.valueOf();
+                combat = true;
+                finalBoss = true;
+            }
+            else{
+                confirm("You have already defeated the guardian!");
+            }
+        }
+        else{
+            confirm("You are already on an adventure!");
+        }
+    }
+    //enemy attack
+    function funEnemyAttack() {
+        switch(adventureType){
+            case 1:
+                    if(Math.random() * 100 <= 50) {
+                        hitPoints = hitPoints - Math.floor(Math.random() * 5 + level * 0.33334);
+                        document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                        confirm("The forest enemy hit you!");
+                    }
+                    else{
+                        confirm("The forest enemy missed you!");
+                    }
+                break;
+            case 2:
+                    if(Math.random() * 100 <= 55) {
+                        hitPoints = hitPoints - Math.floor(Math.random() * 7.5 + level * 0.4);
+                        document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                        confirm("The desert enemy hit you!");
+                    }
+                    else{
+                        confirm("The desert enemy missed you!");
+                    }
+                break;
+            case 3:
+                    if(Math.random() * 100 <= 60) {
+                        hitPoints = hitPoints - Math.floor(Math.random() * 7.5 + level * 0.5);
+                        document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                        confirm("The mountain enemy hit you!");
+                    }
+                    else{
+                        confirm("The mountain enemy missed you!");
+                    }
+                break;
+            case 4:
+                    if(Math.random() * 100 <= 70) {
+                        hitPoints = hitPoints - Math.floor(Math.random() * 10 + level * 0.5);
+                        document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                        confirm("The dungeon enemy hit you!");
+                    }
+                    else{
+                        confirm("The dungeon enemy missed you!");
+                    }
+                break;
+            case 5:
+                    if(Math.random() * 100 <= 75) {
+                        hitPoints = hitPoints - Math.floor(Math.random() * 15 + level * 0.75);
+                        document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                        confirm("The cave enemy hit you!");
+                    }
+                    else{
+                        confirm("The cave enemy missed you!");
+                    }
+                break;
+            case 6:
+                    if(Math.random() * 100 <= 80) {
+                        hitPoints = hitPoints - Math.floor(Math.random() * 20 + level);
+                        document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                        confirm("The dragon enemy hit you!");
+                    }
+                    else{
+                        confirm("The dragon enemy missed you!");
+                    }
+                break;
+            case 7:
+                    if(Math.random() * 100 <= 85) {
+                        hitPoints = hitPoints - Math.floor(Math.random() * 25 + 11 + level * 1.5);
+                        document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                        confirm("The guardian hit you!");
+                    }
+                    else{
+                        confirm("The guardian missed you!");
+                    }
+                break;
+            default:
+                console.log("An error occurred with the type of adventure.");
+                if(Math.random() * 100 >= 50) {
+                    hitPoints = hitPoints - Math.floor(Math.random() * 5 + level * 0.33334);
+                    document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                    confirm("The unknown enemy type hit you!");
+                }
+                else{
+                    confirm("The unknown enemy type missed you!");
+                }
+        }
+        if (hitPoints > 0) {
+            combat = true;
+        }
+        else {
+            document.write("You have perished.");
+        }
+    }
+    //variables loot types
+    var gold = 0;
+    document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+    //forest
+    var wood = 0;
+    document.getElementById("DisplayWood").innerHTML = wood.valueOf();
+    var vine = 0;
+    document.getElementById("DisplayVine").innerHTML = vine.valueOf();
+    var potato = 0;
+    document.getElementById("DisplayPotato").innerHTML = potato.valueOf();
+    //desert
+    var sand = 0;
+    document.getElementById("DisplaySand").innerHTML = sand.valueOf();
+    var cactus = 0;
+    document.getElementById("DisplayCactus").innerHTML = cactus.valueOf();
+    //mountain
+    var snow = 0;
+    document.getElementById("DisplaySnow").innerHTML = snow.valueOf();
+    var rock = 0;
+    document.getElementById("DisplayRock").innerHTML = rock.valueOf();
+    //dungeon
+    var bone = 0;
+    document.getElementById("DisplayBone").innerHTML = bone.valueOf();
+    var rottenFlesh = 0;
+    document.getElementById("DisplayRottenFlesh").innerHTML = rottenFlesh.valueOf();
+    //cave
+    var humanRemains = 0;
+    document.getElementById("DisplayHumanRemains").innerHTML = humanRemains.valueOf();
+    //dragon lair
+    var dragonEgg = 0;
+    document.getElementById("DisplayDragonEgg").innerHTML = dragonEgg.valueOf();
+    //loot function
+    function funLoot(){
+        switch(adventureType){
+            case 1:
+                wood = wood + Math.floor(Math.random() * 12 + 1);
+                document.getElementById("DisplayWood").innerHTML = wood.valueOf();
+                gold = gold + Math.floor(Math.random() * 21 + 5) + potato;
+                document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+                vine = vine + Math.floor(Math.random() * 5 + 1);
+                document.getElementById("DisplayVine").innerHTML = vine.valueOf();
+                potato = potato + Math.floor(Math.random() * 3);
+                document.getElementById("DisplayPotato").innerHTML = potato.valueOf();
+                break;
+            case 2:
+                gold = gold + Math.floor(Math.random() * 30 + 20) + potato;
+                document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+                potato = potato + Math.floor(Math.random() * 3);
+                document.getElementById("DisplayPotato").innerHTML = potato.valueOf();
+                sand = sand + Math.floor(Math.random() * 12 + 1);
+                document.getElementById("DisplaySand").innerHTML = sand.valueOf();
+                cactus = cactus + Math.floor(Math.random() * 5 + 1);
+                document.getElementById("DisplayCactus").innerHTML = cactus.valueOf();
+                break;
+            case 3:
+                gold = gold + Math.floor(Math.random() * 50 + 25) + potato;
+                document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+                potato = potato + Math.floor(Math.random() * 3);
+                document.getElementById("DisplayPotato").innerHTML = potato.valueOf();
+                snow = snow + Math.floor(Math.random() * 10 + 5);
+                document.getElementById("DisplaySnow").innerHTML = snow.valueOf();
+                rock = rock + Math.floor(Math.random() * 1.1);
+                document.getElementById("DisplayRock").innerHTML = rock.valueOf();
+                break;
+            case 4:
+                gold = gold + Math.floor(Math.random() * 60 + 40) + potato;
+                document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+                potato = potato + Math.floor(Math.random() * 3);
+                document.getElementById("DisplayPotato").innerHTML = potato.valueOf();
+                bone = bone + Math.floor(Math.random() * 4 + 2);
+                document.getElementById("DisplayBone").innerHTML = bone.valueOf();
+                rottenFlesh = rottenFlesh + Math.floor(Math.random() * 2 + 2);
+                document.getElementById("DisplayRottenFlesh").innerHTML = rottenFlesh.valueOf();
+                break;
+            case 5:
+                gold = gold + Math.floor(Math.random() * 65 + 60) + potato;
+                document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+                potato = potato + Math.floor(Math.random() * 3);
+                document.getElementById("DisplayPotato").innerHTML = potato.valueOf();
+                rock = rock + Math.floor(Math.random() * 1.2);
+                document.getElementById("DisplayRock").innerHTML = rock.valueOf();
+                humanRemains = humanRemains + Math.floor(Math.random() * 3 + 1);
+                document.getElementById("DisplayHumanRemains").innerHTML = humanRemains.valueOf();
+                break;
+            case 6:
+                gold = gold + Math.floor(Math.random() * 100 + 150) + (potato * 2);
+                document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+                potato = potato + Math.floor(Math.random() * 3);
+                document.getElementById("DisplayPotato").innerHTML = potato.valueOf();
+                dragonEgg = dragonEgg + Math.floor(Math.random() * 1.1 + 0.1);
+                document.getElementById("DisplayDragonEgg").innerHTML = dragonEgg.valueOf();
+                break;
+            case 7:
+                gold = gold + Math.floor(Math.random() * 200 + 250) + potato;
+                document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+                potato = potato + Math.floor(Math.random() * 11 + 20);
+                document.getElementById("DisplayPotato").innerHTML = potato.valueOf();
+                break;
+            default:
+                    alert("An error occurred with the loot function.");
+        }
+    }
+    function funExperience(){
+        switch(adventureType){
+            case 1:
+                experience = experience + 1;
+                if (experience >= level){
+                    level = level + 1;
+                    experience = 0;
+                    document.getElementById("DisplayLevel").innerHTML = level.valueOf();
+                }
+                hitPoints = level * 5 + 20;
+                document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                break;
+            case 2:
+                experience = experience + 2;
+                if (experience >= level){
+                    level = level + 1;
+                    experience = 0;
+                    document.getElementById("DisplayLevel").innerHTML = level.valueOf();
+                }
+                hitPoints = level * 5 + 20;
+                document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                break;
+            case 3:
+                experience = experience + 3;
+                if (experience >= level){
+                    level = level + 1;
+                    experience = 0;
+                    document.getElementById("DisplayLevel").innerHTML = level.valueOf();
+                }
+                hitPoints = level * 5 + 20;
+                document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                break;
+            case 4:
+                experience = experience + 5;
+                if (experience >= level){
+                    level = level + 1;
+                    experience = 0;
+                    document.getElementById("DisplayLevel").innerHTML = level.valueOf();
+                }
+                hitPoints = level * 5 + 20;
+                document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                break;
+            case 5:
+                experience = experience + 8;
+                if (experience >= level){
+                    level = level + 1;
+                    experience = 0;
+                    document.getElementById("DisplayLevel").innerHTML = level.valueOf();
+                }
+                hitPoints = level * 5 + 20;
+                document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                break;
+            case 6:
+                experience = experience + 12;
+                if (experience >= level){
+                    level = level + 1;
+                    experience = 0;
+                    document.getElementById("DisplayLevel").innerHTML = level.valueOf();
+                }
+                hitPoints = level * 5 + 20;
+                document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                break;
+            case 7:
+                experience = experience + 20;
+                if (experience >= level){
+                    level = level + 1;
+                    experience = 0;
+                    document.getElementById("DisplayLevel").innerHTML = level.valueOf();
+                }
+                    confirm("VICTORY!");
+                hitPoints = level * 5 + 20;
+                document.getElementById("DisplayHP").innerHTML = hitPoints.valueOf();
+                break;
+            default:
+                    console.log("An error occurred with the experience table.");
+        }
+    }
+    function funSellPotato() {
+        if(potato > 0) {
+            gold = gold + 10;
+            potato = potato - 1;
+            document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+            document.getElementById("DisplayPotato").innerHTML = potato.valueOf();
+        }
+        else{
+            confirm("You don't have enough potatoes!");
+        }
+    }
+    function funSellVine() {
+        if(vine > 0) {
+            gold = gold + 4;
+            vine = vine - 1;
+            document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+            document.getElementById("DisplayVine").innerHTML = vine.valueOf();
+        }
+    else{
+            confirm("You don't have enough vines!");
+        }
+    }
+    function funSellWood() {
+        if(wood > 0) {
+            gold = gold + 6;
+            wood = wood - 1;
+            document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+            document.getElementById("DisplayWood").innerHTML = wood.valueOf();
+        }
+    else{
+            confirm("You don't have enough wood!");
+        }
+    }
+    function funSellSand() {
+        if(sand > 0) {
+            gold = gold + 5;
+            sand = sand - 1;
+            document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+            document.getElementById("DisplaySand").innerHTML = sand.valueOf();
+        }
+    else{
+            confirm("You don't have enough sand!");
+        }
+    }
+    function funSellCactus() {
+        if(cactus > 0) {
+            gold = gold + 7;
+            cactus = cactus - 1;
+            document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+            document.getElementById("DisplayCactus").innerHTML = cactus.valueOf();
+        }
+    else{
+            confirm("You don't have enough cactus!");
+        }
+    }
+    function funSellSnow() {
+        if(snow > 0) {
+            gold = gold + 10;
+            snow = snow - 1;
+            document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+            document.getElementById("DisplaySnow").innerHTML = snow.valueOf();
+        }
+    else{
+            confirm("You don't have enough snow!");
+        }
+    }
+    function funSellRock() {
+        if(rock > 0) {
+            gold = gold + 3;
+            rock = rock - 1;
+            document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+            document.getElementById("DisplayRock").innerHTML = rock.valueOf();
+        }
+    else{
+            confirm("You don't have enough rocks!");
+        }
+    }
+    function funSellBone() {
+        if(bone > 0) {
+            gold = gold + 12;
+            bone = bone - 1;
+            document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+            document.getElementById("DisplayBone").innerHTML = bone.valueOf();
+        }
+    else{
+            confirm("You don't have enough bones!");
+        }
+    }
+    function funSellRottenFlesh() {
+        if(rottenFlesh > 0) {
+            gold = gold + 15;
+            rottenFlesh = rottenFlesh - 1;
+            document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+            document.getElementById("DisplayRottenFlesh").innerHTML = rottenFlesh.valueOf();
+        }
+    else{
+            confirm("You don't have enough rotten flesh!");
+        }
+    }
+    function funSellHumanRemains() {
+        if(humanRemains > 0) {
+            gold = gold + 20;
+            humanRemains = humanRemains - 1;
+            document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+            document.getElementById("DisplayHumanRemains").innerHTML = humanRemains.valueOf();
+        }
+    else{
+            confirm("You don't have enough human remains!");
+        }
+    }
+    function funSellDragonEgg() {
+        if(dragonEgg > 0) {
+            gold = gold + 250;
+            dragonEgg = dragonEgg - 1;
+            document.getElementById("DisplayGold").innerHTML = gold.valueOf();
+            document.getElementById("DisplayDragonEgg").innerHTML = dragonEgg.valueOf();
+        }
+    else{
+            confirm("You don't have enough dragon eggs!");
+        }
+    }
+</script>
+</html>

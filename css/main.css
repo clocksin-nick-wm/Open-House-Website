@@ -2620,14 +2620,22 @@ cite {
     margin: 0 0 0 22px;
 }
 
+#header-nick {
+    float: right;
+    align-content: right;
+    position: absolute;
+    left: 500px;
+}
+
+
 /* about page */
 .rst-header-banner.rst-banner-background.rst-banner-3
 {
-    background: url("https://placeholdit.imgix.net/~text?txtsize=75&txt=%20&w=300&h=300&txttrack=0") no-repeat scroll center top / cover ;
+    background-color: black;
 }
 .rst-header-banner.rst-banner-3 .rst-header-menu-bar
 {
-    background: transparent;
+    background-color: black;
 }
 .rst-banner-3 .rst-header-menu li a,
 .rst-banner-3 .current-menu-item > a
@@ -2635,7 +2643,7 @@ cite {
     color: #fff;
 }
 .rst-banner-3 .rst-header-menu > ul ul li a {
-    color: #1c2633;
+    color: #333333;
 }
 
 /* scroll down */
